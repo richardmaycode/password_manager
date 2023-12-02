@@ -69,4 +69,8 @@ Rails.application.configure do
   # config.action_cable.disable_request_forgery_protection = true
   
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+
+  config.active_record.encryption.primary_key = Rails.application.credentials[:active_record_encryption][:primary_key]
+config.active_record.encryption.deterministic_key = Rails.application.credentials[:active_record_encryption][:deterministic_key]
+config.active_record.encryption.key_derivation_salt = Rails.application.credentials[:active_record_encryption][:key_derivation_salt]
 end
