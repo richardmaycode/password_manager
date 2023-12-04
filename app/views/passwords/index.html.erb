@@ -1,3 +1,6 @@
-<%= tag.h1 "Password Manager" %>
-<%= link_to "New Password", new_password_url %>
+
+<%= tag.div class: "flex justify-between items-center" do %>
+  <%= tag.h1 "Password Manager", class: "mb-0" %>
+  <%= link_to "New Password", new_password_url %>
+<% end %>
 <%= render @passwords %>
