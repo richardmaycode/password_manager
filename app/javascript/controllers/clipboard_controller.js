@@ -1,21 +1,17 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static values = {
-    content: String
-  }
-
-  connect() {
-    this.originalText = this.element.textContent
-  }
+  static targets = ["flash"]
 
   copy() {
     navigator.clipboard.writeText(this.contentValue).then(
       () => {
         // clipboard successfully set
-        this.element.textContent = "Copied!"
+        this.flashTarget.textContent = "Copied!";
+        this.flashTarget.classList.remove('hidden');
         setTimeout(() => {
-          this.element.textContent = this.originalText
+          this.flashTarget.classList.add('hidden');
+          this.flashTarget.textContent = ""
         }, 1000)
       },
       () => {
