@@ -21,7 +21,7 @@
 
   <%= tag.div do %>
     <%= form.submit %>
-    <%= button_tag "Delete", form: "delete_password" %>
+    <%= button_tag "Delete", form: "delete_password" if form.object.persisted? && current_user_password.deletable? %>
   <% end %>
 <% end %>
 

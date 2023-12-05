@@ -10,7 +10,7 @@
     <% end %>
   <% end %>
 
-  <%= link_to "Edit", edit_password_path(@password) %>
+  <%= link_to "Edit", edit_password_path(@password) if current_user_password.editable? %>
 <% end %>
 
 <%= tag.h3 "Credentials" %>
@@ -26,14 +26,19 @@
   <%= button_tag "Copy", class: "px-5 py-2.5 bg-gray-200 rounded", data: { controller: "clipboard", action: "clipboard#copy", clipboard_content_value: @password.password } %>
 <% end %>
 
-<%= tag.h3 "Share" %>
-<%= link_to "Add a user", new_password_share_path(@password) %>
+<%= tag.div class: "mb-4 mt-8 flex justify-between items-center" do %>
+  <%= tag.h3 "Shared With", class: "my-0" %>
+  <%= link_to "Add a user", new_password_share_path(@password) if current_user_password.shareable? %>
+<% end %>
+<%= tag.div class:"flex flex-col gap-2 divide-y divide-gray-100 mb-8" do %>
+  <% @password.user_passwords.includes(:user).each do |user_password| %>
+    <%= tag.div class: "grid grid-cols-3" do %>
+      <%= tag.div user_password.user.email %>
+      <%= tag.div user_password.role, class: "text-center" %>
 
-<%= tag.div class:"flex flex-col gap-2 divide-y divide-gray-100" do %>
-  <% @password.users.excluding(current_user).each do |user| %>
-    <%= tag.div class: "flex justify-between items-center" do %>
-      <%= user.email %>
-      <%= button_to "Remove", password_share_path(@password, user), method: :delete, data: { turbo_confirm: "Are you sure?" } %>
+      <%= tag.div class: "text-right" do %>
+        <% button_to "Remove", password_share_path(@password, user_password.user), method: :delete, data: { turbo_confirm: "Are you sure?" } if current_user_password.shareable? %>
+      <% end %>
     <% end %>
   <% end%>
 <% end %>

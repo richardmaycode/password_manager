@@ -1,13 +1,6 @@
 <%= tag.h1 "Share Password" %>
 
-<%= form_with model: @user_password, url: password_shares_path(@password) do |form| %>
-  <%= tag.div do %>
-    <%= form.label :user_id %>
-    <%= form.collection_select :user_id, @users, :id, :email %>
-  <% end %>
-
-  <%= tag.div do %>
-    <%= form.submit "Share" %>
-  <% end %>
-
-<% end %>
+<%= render "form", 
+    password: @password, 
+    user_password: @user_password
+%>
