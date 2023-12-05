@@ -4,22 +4,22 @@
       <%= tag.div message %>
     <% end %>
   <% end %>
-  <%= tag.div do %>
+  <%= tag.div class: "field" do %>
     <%= form.label :url %>
     <%= form.url_field :url %>
   <% end %>
 
-  <%= tag.div do %>
+  <%= tag.div class: "field" do %>
     <%= form.label :username %>
     <%= form.text_field :username %>
   <% end %>
 
-  <%= tag.div do %>
+  <%= tag.div class: "field" do %>
     <%= form.label :password %>
     <%= form.text_field :password %>
   <% end %>
 
-  <%= tag.div do %>
+  <%= tag.div class: "field" do %>
     <%= form.submit %>
     <%= button_tag "Delete", form: "delete_password" if form.object.persisted? && current_user_password.deletable? %>
   <% end %>

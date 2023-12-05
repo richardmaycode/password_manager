@@ -1,0 +1,19 @@
+<%= tag.nav class: "flex justify-between" do %>
+  <%= tag.div class: "flex gap-2 items-center" do%>
+  <%= link_to"Password Manager", root_path, class: "text-xl no-underline" %>
+
+    <%= tag.ul class: "list-none flex gap-2" do %>
+      <%= tag.li link_to "Home", root_path %>
+    <% end %>
+  <% end %>
+
+  <%= tag.ul class: "list-none flex gap-2 items-center" do %>
+    <% if user_signed_in? %>
+      <%= link_to "Profile", edit_user_registration_path  %>
+      <%= button_to "Logout", destroy_user_session_path, method: :delete %>
+    <% else %>
+      <%= link_to "Login", new_user_session_path  %>
+      <%= link_to "Signup", new_user_registration_path %>
+    <% end %>
+  <% end %>
+<% end %>
