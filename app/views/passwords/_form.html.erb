@@ -1,4 +1,4 @@
-<%= form_with model: password do |form| %>
+<%= form_with model: password, class: "" do |form| %>
   <% if form.object.errors.any? %>
     <% form.object.errors.full_messages.each do |message| %>
       <%= tag.div message %>
@@ -6,17 +6,17 @@
   <% end %>
   <%= tag.div class: "field" do %>
     <%= form.label :url %>
-    <%= form.url_field :url %>
+    <%= form.url_field :url, class: "w-full" %>
   <% end %>
 
   <%= tag.div class: "field" do %>
     <%= form.label :username %>
-    <%= form.text_field :username %>
+    <%= form.text_field :username, class: "w-full" %>
   <% end %>
 
   <%= tag.div class: "field" do %>
     <%= form.label :password %>
-    <%= form.text_field :password %>
+    <%= form.text_field :password, class: "w-full" %>
   <% end %>
 
   <%= tag.div class: "field" do %>

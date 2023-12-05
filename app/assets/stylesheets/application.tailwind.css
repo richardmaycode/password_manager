@@ -22,7 +22,7 @@
   }
 
   .field {
-    @apply mb-4;
+    @apply mb-4 mx-auto;
   }
 
   button[form="delete_password"] {

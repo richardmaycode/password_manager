@@ -1,15 +1,15 @@
 <%= form_with model: user_password, url: password_shares_path(password) do |form| %>
-  <%= tag.div do %>
+  <%= tag.div class: "field" do %>
     <%= form.label :user_id %>
-    <%= form.collection_select :user_id, password.shareable_users, :id, :email %>
+    <%= form.collection_select :user_id, password.shareable_users, :id, :email, {}, class: "w-full" %>
   <% end %>
 
-  <%= tag.div do %>
+  <%= tag.div class: "field" do %>
     <%= form.label :role %>
-    <%= form.select :role, UserPassword::ROLES.map { |r| [r.titleize, r] } %>
+    <%= form.select :role, UserPassword::ROLES.map { |r| [r.titleize, r] }, {},  class: "w-full" %>
   <% end %>
 
-  <%= tag.div do %>
+  <%= tag.div class: "mt-4" do %>
     <%= form.submit "Share" %>
   <% end %>
 
